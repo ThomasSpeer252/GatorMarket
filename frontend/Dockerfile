@@ -11,4 +11,4 @@ COPY . .
 # Install dependencies (if you add them later)
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
