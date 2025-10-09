@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://myuser:mypassword@db:5432/gatormarket
+      - DATABASE_URL=postgres://gatoradmin:gogators123@db:5432/gatormarket
 
   frontend:
     build: ./frontend
