@@ -5,10 +5,11 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init_script:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      POSTGRES_USER: gatoradmin
+      POSTGRES_PASSWORD: gogators123
+      POSTGRES_DB: gatormarket
     ports:
       - "5432:5432"
 
@@ -22,16 +23,16 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://myuser:mypassword@db:5432/mydb
+      - DATABASE_URL=postgres://myuser:mypassword@db:5432/gatormarket
 
   frontend:
     build: ./frontend
-    command: npm run dev -- --host 0.0.0.0
+    command: npm start
     volumes:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "5173:5173"
+      - "5173:5713"
     depends_on:
       - backend
 
