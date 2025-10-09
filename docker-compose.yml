@@ -1,14 +1,15 @@
-version: "3.9"
+name: gatormarket
 
 services:
   db:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      POSTGRES_USER: gatoradmin
+      POSTGRES_PASSWORD: gogators123
+      POSTGRES_DB: gatormarket
     ports:
       - "5432:5432"
 
@@ -22,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://myuser:mypassword@db:5432/mydb
+      - DATABASE_URL=postgres://gatoradmin:gogators123@db:5432/gatormarket
 
   frontend:
     build: ./frontend
