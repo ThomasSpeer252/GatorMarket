@@ -15,7 +15,7 @@ from core.models import Listing
 
 def main():
 
-    testListing = addListing(listing_number=1, title="Used Toilet", description="Slightly used toilet, minor poop stains", price=100)
+    testListing = addListing(listing_number=1, title="Used Toilet", description="Slightly used toilet, minor poop stains", price=100, image_location = "file/test")
 
     if (Listing.objects.filter(listing_number=1).exists()):
         print("Listing successfully added")

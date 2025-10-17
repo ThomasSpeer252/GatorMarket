@@ -9,6 +9,8 @@ class Listing(models.Model): #class for listing DB
     description = models.CharField(max_length=128)
     date_created = models.DateField()
     price = models.IntegerField()
+    image_location = models.CharField(max_length=512)
+
 
     class Meta:
         db_table = 'listing'
