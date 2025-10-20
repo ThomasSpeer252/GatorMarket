@@ -24,7 +24,7 @@ Printed statements, as well as the returning of Boolean variables will indicate 
 -----VIEWING THE DATABASE-----
 1. Select the "db" container in Docker
 2. Select the "Exec" tab
-3. In the command line, type "psql -U gatoradmin -d gatormarket" to log in to the datab
+3. In the command line, type "psql -U gatoradmin -d gatormarket" to log in to the database
 4. You can now type SQL database queries to view and modify the gatormarket database and its tables. **EVERY QUERY MUST HAVE A SEMICOLON (;) AT THE END OF THEM TO WORK**
 
 Example:
