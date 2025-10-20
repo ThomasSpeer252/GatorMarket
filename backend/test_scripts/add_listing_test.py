@@ -17,8 +17,10 @@ def main():
 
     testListing = addListing(listing_number=1, title="Used Toilet", description="Slightly used toilet, minor poop stains", price=100, image_location = "file/test")
 
-    if (Listing.objects.filter(listing_number=1).exists()):
+    if testListing:
         print("Listing successfully added")
+    else:
+        print("Listing add unsuccessful")
 
         
 main()
