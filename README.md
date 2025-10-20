@@ -5,21 +5,34 @@ GatorMarket is a student markeplace for UF gators. It is a platform for students
 1. download repo
 2. navigate to directory
 3. run "docker pull postgres:15" if you do not have the image installed
-4. run "docker-compose up --build"
-5. profit
+5. run "docker-compose up --build"
+6. profit
+
+**When new files are added to the Docker directory, run "docker-compose up --build" again to make them visible and usable by Docker**
 
 
 
------ORM-----
+-----RUNNING ORM TEST SCRIPTS-----
 
-in backend/test_scripts there is a test script called add_listing_test.py
+Test scripts are located in backend/test_scripts
 
-Run it from the /backend directory with "docker compose exec backend python test_scripts/add_listing_test.py"
+Run them from the /backend directory with "docker compose exec backend python test_scripts/test_name.py"
 
-It will fail because that listing number is already in the database
+Printed statements, as well as the returning of Boolean variables will indicate whether respective tests pass or fail.
 
-To get it to work, simply change the listing number in the test script then run it with the command above
+
+-----VIEWING THE DATABASE-----
+1. Select the "db" container in Docker
+2. Select the "Exec" tab
+3. In the command line, type "psql -U gatoradmin -d gatormarket" to log in to the datab
+4. You can now type SQL database queries to view and modify the gatormarket database and its tables. **EVERY QUERY MUST HAVE A SEMICOLON (;) AT THE END OF THEM TO WORK**
+
+Example:
+<img width="811" height="400" alt="image" src="https://github.com/user-attachments/assets/e12d66ee-50d5-4e47-b7ba-df4ce7a8eb43" />
 
 
 ----TO-DO-----
-* test scripts for add transaction and add account
+* Write ORM code for searching tables based on filters
+* Write ORM code for deleting and/or disabling data from tables
+* Figure out how to connect frontend components to backend components in Docker
+* Determine where we want images to be stored via file location
