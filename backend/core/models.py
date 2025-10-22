@@ -22,7 +22,7 @@ class Account(models.Model):
     password = models.CharField(max_length=128)
     email = models.CharField(max_length=128)
     phone_number = models.CharField(max_length=20)
-    isAdmin = models.BooleanField()
+    isadmin = models.BooleanField()
 
     class Meta:
         db_table = 'account'
