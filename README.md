@@ -32,7 +32,7 @@ Example:
 
 
 ----TO-DO-----
-* Add columns for rating and the original poster to Listing table and reset the database schema (my bad I forgot to add them)
+* Add columns for rating, category and original poster to Listing table and reset the database schema (my bad I forgot to add them)
 * Write ORM code for searching tables based on filters
 * Write ORM code for deleting and/or disabling data from tables
 * Figure out how to connect frontend components to backend components in Docker
