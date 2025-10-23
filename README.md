@@ -28,11 +28,11 @@ Printed statements, as well as the returning of Boolean variables will indicate 
 4. You can now type SQL database queries to view and modify the gatormarket database and its tables. **EVERY QUERY MUST HAVE A SEMICOLON (;) AT THE END OF THEM TO WORK**
 
 Example:
-<img width="811" height="400" alt="image" src="https://github.com/user-attachments/assets/e12d66ee-50d5-4e47-b7ba-df4ce7a8eb43" />
+<img width="1063" height="355" alt="image" src="https://github.com/user-attachments/assets/99c813e0-d290-4dc7-a220-eddbab12df04" />
+
 
 
 ----TO-DO-----
-* Add columns for rating, category and original poster to Listing table and reset the database schema (my bad I forgot to add them)
 * Write ORM code for searching tables based on filters
 * Write ORM code for deleting and/or disabling data from tables
 * Figure out how to connect frontend components to backend components in Docker
