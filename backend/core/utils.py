@@ -2,13 +2,13 @@ from datetime import date
 from core.models import Listing, Account, Transaction
 from django.db.models import Max
 
-def addListing(listing_number, title, description, price, image_location):
+def addListing(listing_number, title, description, price, image_location, rating, category, original_poster):
      #Add a single listing to the database
 
     date_created = date.today()
 
 
-    obj, created = Listing.objects.get_or_create(listing_number=listing_number, defaults={"title": title, "description": description, "date_created": date_created, "price": price, "image_location": image_location}) #Use ORM to create the listing 
+    obj, created = Listing.objects.get_or_create(listing_number=listing_number, defaults={"title": title, "description": description, "date_created": date_created, "price": price, "image_location": image_location, "rating": rating, "category": category, "original_poster": original_poster}) #Use ORM to create the listing 
 
     if created:
         #will create a new listing ONLY IF an existing listing number hasnt been already found
