@@ -5,6 +5,9 @@ CREATE TABLE Listing (
   date_created DATE,
   price INT,
   image_location VARCHAR(512),
+  rating INT,
+  category VARCHAR(20),
+  original_poster VARCHAR(128),
   PRIMARY KEY (listing_number)
 );
 
