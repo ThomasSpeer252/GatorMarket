@@ -10,7 +10,6 @@ class Listing(models.Model): #class for listing DB
     date_created = models.DateField()
     price = models.IntegerField()
     image_location = models.CharField(max_length=512)
-    rating = models.IntegerField()
     category = models.CharField(max_length=20)
     original_poster = models.CharField(max_length=128)
 
@@ -25,6 +24,8 @@ class Account(models.Model):
     password = models.CharField(max_length=128)
     email = models.CharField(max_length=128)
     phone_number = models.CharField(max_length=20)
+    rating = models.IntegerField()
+    isseller = models.BooleanField()
     isadmin = models.BooleanField()
 
     class Meta:
