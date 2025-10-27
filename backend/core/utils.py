@@ -2,13 +2,13 @@ from datetime import date
 from core.models import Listing, Account, Transaction
 from django.db.models import Max
 
-def addListing(listing_number, title, description, price, image_location, rating, category, original_poster):
+def addListing(listing_number, title, description, price, image_location, category, original_poster):
      #Add a single listing to the database
 
     date_created = date.today()
 
 
-    obj, created = Listing.objects.get_or_create(listing_number=listing_number, defaults={"title": title, "description": description, "date_created": date_created, "price": price, "image_location": image_location, "rating": rating, "category": category, "original_poster": original_poster}) #Use ORM to create the listing 
+    obj, created = Listing.objects.get_or_create(listing_number=listing_number, defaults={"title": title, "description": description, "date_created": date_created, "price": price, "image_location": image_location, "category": category, "original_poster": original_poster}) #Use ORM to create the listing 
 
     if created:
         #will create a new listing ONLY IF an existing listing number hasnt been already found
@@ -18,8 +18,8 @@ def addListing(listing_number, title, description, price, image_location, rating
         print(f"Listing {listing_number}:{obj.title} failed insertion in table")
         return False
 
-def addAccount(account_number, username, password, email, phone_number, isAdmin):
-    obj, created = Account.objects.get_or_create(account_number=account_number, defaults={"username": username, "password": password, "email": email, "phone_number": phone_number, "isadmin": isAdmin})
+def addAccount(account_number, username, password, email, phone_number, rating, isSeller, isAdmin):
+    obj, created = Account.objects.get_or_create(account_number=account_number, defaults={"username": username, "password": password, "email": email, "phone_number": phone_number, "rating" : rating, "isseller" : isSeller, "isadmin": isAdmin})
 
     if created:
         print(f"Account {account_number}:{obj.username} inserted in table")

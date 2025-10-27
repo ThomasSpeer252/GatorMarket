@@ -15,7 +15,7 @@ from core.models import Account
 
 def main():
 
-    testAccount = addAccount(account_number= 1, username= "boobo", password= "password", email= "mary.rocks@gmail.com" , phone_number = "561-222-3324", isAdmin = False)
+    testAccount = addAccount(account_number= 1, username= "boobo", password= "password", email= "mary.rocks@gmail.com" , phone_number = "561-222-3324", rating = "4", isSeller = True, isAdmin = False)
 
     if testAccount:
         print("Account successfully added")
