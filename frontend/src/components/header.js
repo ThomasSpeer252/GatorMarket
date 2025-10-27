@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import './header.css'
 
@@ -57,7 +58,7 @@ const Header = (props) => {
                 </g>
               </svg>
             </button>
-            <button className="btn-primary btn">Sign In</button>
+            <Link to="/login" className="btn-primary btn">Sign In</Link>
           </div>
         </div>
       </nav>
