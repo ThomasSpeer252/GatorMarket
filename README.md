@@ -22,4 +22,3 @@ To get it to work, simply change the listing number in the test script then run 
 
 
 ----TO-DO-----
-* test scripts for add transaction and add account
