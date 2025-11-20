@@ -33,6 +33,4 @@ Example:
 
 
 ----TO-DO-----
-* Write ORM code for searching tables based on filters
-* Write ORM code for deleting and/or disabling data from tables
 * Determine where we want images to be stored via file location
