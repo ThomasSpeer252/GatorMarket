@@ -6,17 +6,48 @@ from django.core.serializers import serialize
 import json
 from .models import Listing, Account, Transaction
 from .utils import addListing, addAccount, addTransaction, getHighestKeyNum
+from django.db.models import Q
 
 def test_api(request):
     return JsonResponse({"message": "Hello from GatorMarket backend API!"})
 
 @csrf_exempt
 def listings_api(request):
-    if request.method == "GET": #return list of all listing objects
-        listings = list(Listing.objects.values())
-        return JsonResponse(listings, safe=False)
+    #listings with categories of -1 will NOT appear. Category of -1 indicates that the transaction completed, so the listing does not need to be there anymore.
+    if request.method == "GET": #get listing objects
+        # Get all listings
+        #listings = Listing.objects.all()
+        listings = Listing.objects.exclude(category='-1').order_by('-listing_number')
 
-    elif request.method == "POST":
+        # filter parameters
+        category = request.GET.get("category")
+        min_price = request.GET.get("min_price")
+        max_price = request.GET.get("max_price")
+        keyword = request.GET.get("keyword")
+        date_posted = request.GET.get("date_posted")
+
+        # Apply filters if they are used
+        if category:
+            listings = listings.filter(category__iexact=category)
+        if min_price:
+            listings = listings.filter(price__gte=min_price)
+        if max_price:
+            listings = listings.filter(price__lte=max_price)
+        if keyword:
+            listings = listings.filter(Q(title__icontains=keyword) | Q(description__icontains=keyword))
+        if date_posted:
+            listings = listings.filter(date_posted__date=date_posted)
+
+
+        #example api call with filters applied:
+        #GET http://localhost:8000/api/listings/?category=Electronics&keyword=macbook&min_price=100&max_price=1000
+        #(get listing with category Electronics, keyword macbook, price between 100 and 1000 dollars)
+
+        # Convert to list of dictionaries
+        listings_data = list(listings.values())
+        return JsonResponse(listings_data, safe=False)
+
+    elif request.method == "POST": #create a new listing object
         try:
             data = json.loads(request.body)
 
@@ -96,7 +127,18 @@ def transaction_api(request):
                 data["buyer_username"],
             )
 
+            #if transaction completes...
             if success:
+                listing_number = data.get("listing_number") #tries to get the listing number included in the POST
+                if listing_number:
+                    try: #if found, remove the listing with the corresponding listing number by setting category to -1
+                        listing = Listing.objects.get(listing_number=listing_number)
+                        listing.category = "-1"
+                        listing.save()
+                    except Listing.DoesNotExist:
+                        return JsonResponse({
+                            "warning": "Transaction created, but listing not found to update."
+                        }, status=201)
                 return JsonResponse({"message": "Transaction added successfully", "transaction_id": new_transaction_number}, status=201)
             else:
                 return JsonResponse({"error": "Transaction already exists"}, status=400)
