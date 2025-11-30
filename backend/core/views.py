@@ -7,16 +7,18 @@ import json
 from .models import Listing, Account, Transaction
 from .utils import addListing, addAccount, addTransaction, getHighestKeyNum
 from django.db.models import Q
+from django.conf import settings
+
 
 def test_api(request):
     return JsonResponse({"message": "Hello from GatorMarket backend API!"})
 
+
 @csrf_exempt
 def listings_api(request):
-    #listings with categories of -1 will NOT appear. Category of -1 indicates that the transaction completed, so the listing does not need to be there anymore.
-    if request.method == "GET": #get listing objects
-        # Get all listings
-        #listings = Listing.objects.all()
+    # listings with category -1 don't appear (sold)
+    if request.method == "GET":
+        # all active listings, newest first
         listings = Listing.objects.exclude(category='-1').order_by('-listing_number')
 
         # filter parameters
@@ -26,7 +28,7 @@ def listings_api(request):
         keyword = request.GET.get("keyword")
         date_posted = request.GET.get("date_posted")
 
-        # Apply filters if they are used
+        # apply filters
         if category:
             listings = listings.filter(category__iexact=category)
         if min_price:
@@ -34,24 +36,30 @@ def listings_api(request):
         if max_price:
             listings = listings.filter(price__lte=max_price)
         if keyword:
-            listings = listings.filter(Q(title__icontains=keyword) | Q(description__icontains=keyword))
+            listings = listings.filter(
+                Q(title__icontains=keyword) | Q(description__icontains=keyword)
+            )
         if date_posted:
             listings = listings.filter(date_posted__date=date_posted)
 
-
-        #example api call with filters applied:
-        #GET http://localhost:8000/api/listings/?category=Electronics&keyword=macbook&min_price=100&max_price=1000
-        #(get listing with category Electronics, keyword macbook, price between 100 and 1000 dollars)
-
-        # Convert to list of dictionaries
+        # convert to list
         listings_data = list(listings.values())
+
+        # ADD IMAGE URL HERE
+        for item in listings_data:
+            if item.get("image_location"):
+                # Build full URL: http://127.0.0.1:8000/media/images/….
+                item["image_url"] = request.build_absolute_uri(
+                    settings.MEDIA_URL + item["image_location"]
+                )
+
         return JsonResponse(listings_data, safe=False)
 
-    elif request.method == "POST": #create a new listing object
+    elif request.method == "POST":
         try:
             data = json.loads(request.body)
 
-            # Optionally get next listing number
+            # next listing number
             new_listing_number = getHighestKeyNum("listing") + 1
 
             success = addListing(
@@ -65,7 +73,11 @@ def listings_api(request):
             )
 
             if success:
-                return JsonResponse({"message": "Listing added successfully", "listing_number": new_listing_number}, status=201)
+                return JsonResponse(
+                    {"message": "Listing added successfully",
+                     "listing_number": new_listing_number},
+                     status=201
+                )
             else:
                 return JsonResponse({"error": "Listing already exists"}, status=400)
 
@@ -74,9 +86,10 @@ def listings_api(request):
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
+
 @csrf_exempt
 def account_api(request):
-    if request.method == "GET": #return list of all listing objects
+    if request.method == "GET":
         accounts = list(Account.objects.values())
         return JsonResponse(accounts, safe=False)
 
@@ -84,7 +97,6 @@ def account_api(request):
         try:
             data = json.loads(request.body)
 
-            # Optionally get next listing number
             new_account_number = getHighestKeyNum("account") + 1
 
             success = addAccount(
@@ -99,7 +111,11 @@ def account_api(request):
             )
 
             if success:
-                return JsonResponse({"message": "Account added successfully", "account_number": new_account_number}, status=201)
+                return JsonResponse(
+                    {"message": "Account added successfully",
+                     "account_number": new_account_number},
+                     status=201
+                )
             else:
                 return JsonResponse({"error": "Account already exists"}, status=400)
 
@@ -108,9 +124,10 @@ def account_api(request):
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
+
 @csrf_exempt
 def transaction_api(request):
-    if request.method == "GET": #return list of all listing objects
+    if request.method == "GET":
         transactions = list(Transaction.objects.values())
         return JsonResponse(transactions, safe=False)
 
@@ -118,7 +135,6 @@ def transaction_api(request):
         try:
             data = json.loads(request.body)
 
-            # Optionally get next listing number
             new_transaction_number = getHighestKeyNum("transaction") + 1
 
             success = addTransaction(
@@ -127,19 +143,25 @@ def transaction_api(request):
                 data["buyer_username"],
             )
 
-            #if transaction completes...
             if success:
-                listing_number = data.get("listing_number") #tries to get the listing number included in the POST
+                # if listing number supplied, mark it sold
+                listing_number = data.get("listing_number")
                 if listing_number:
-                    try: #if found, remove the listing with the corresponding listing number by setting category to -1
+                    try:
                         listing = Listing.objects.get(listing_number=listing_number)
                         listing.category = "-1"
                         listing.save()
                     except Listing.DoesNotExist:
-                        return JsonResponse({
-                            "warning": "Transaction created, but listing not found to update."
-                        }, status=201)
-                return JsonResponse({"message": "Transaction added successfully", "transaction_id": new_transaction_number}, status=201)
+                        return JsonResponse(
+                            {"warning": "Transaction created, but listing not found to update."},
+                            status=201
+                        )
+
+                return JsonResponse(
+                    {"message": "Transaction added successfully",
+                     "transaction_id": new_transaction_number},
+                     status=201
+                )
             else:
                 return JsonResponse({"error": "Transaction already exists"}, status=400)
 

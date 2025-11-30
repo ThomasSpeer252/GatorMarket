@@ -7,3 +7,4 @@ urlpatterns = [
     path('accounts/',views.account_api, name='account_api'),
     path('transactions/',views.transaction_api, name='transaction_api'),
 ]
+

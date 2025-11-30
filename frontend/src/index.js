@@ -11,14 +11,19 @@ import './style.css'
 import PreLogin from './pages/prelogin'
 import Login from './pages/login'
 import SignUp from './pages/signup'
+import Listings from './pages/listings'
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route component={PreLogin} exact path="/" />
-        <Route component={Login} exact path="/login" />
-        <Route component={SignUp} exact path="/signup" />
+        <Route exact path="/" component={PreLogin} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+
+        {/* */}
+        <Route exact path="/listings" component={Listings} />
+
         <Redirect to="/" />
       </Switch>
     </Router>

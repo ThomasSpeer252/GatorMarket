@@ -1,5 +1,9 @@
+/* FIX: header container must NOT be display: contents */
 .header-container1 {
-  display: contents;
+  display: block;        /* Was: display: contents — THIS BROKE ALL CLICKS */
+  width: 100%;
+  position: relative;
+  z-index: 10;           /* ensures header sits above page content */
 }
 
 /* Desktop header layout */
@@ -92,12 +96,14 @@
       transform 0.3s var(--animation-curve-primary);
 }
 
+/* These "container2–5" classes are NOT used by your header,
+   but I am keeping them unchanged for safety. */
 .header-container2 {
   display: none;
 }
 
 .header-container3 {
-  display: contents;
+  display: block;     /* safer than contents */
 }
 
 .header-container4 {
@@ -105,5 +111,5 @@
 }
 
 .header-container5 {
-  display: contents;
+  display: block;     /* safer than contents */
 }

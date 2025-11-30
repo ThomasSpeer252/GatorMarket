@@ -1,0 +1,902 @@
+[
+  {
+    "listing_number": 1,
+    "title": "Organic Chemistry Textbook",
+    "description": "Orgo textbook for CHM2210/2211, good condition.",
+    "price": 120,
+    "image_location": "images/textbooks/item_001.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser051"
+  },
+  {
+    "listing_number": 2,
+    "title": "24-inch Computer Monitor",
+    "description": "1080p monitor, no dead pixels.",
+    "price": 224,
+    "image_location": "images/electronics/item_002.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser072"
+  },
+  {
+    "listing_number": 3,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 55,
+    "image_location": "images/furniture/item_003.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser099"
+  },
+  {
+    "listing_number": 4,
+    "title": "Running Shoes",
+    "description": "Lightly used running shoes, men's size 10.",
+    "price": 21,
+    "image_location": "images/apparel/item_004.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser012"
+  },
+  {
+    "listing_number": 5,
+    "title": "Tutoring in Calculus",
+    "description": "One-on-one MAC2311 tutoring, hourly rate.",
+    "price": 19,
+    "image_location": "images/services/item_005.jpg",
+    "category": "services",
+    "original_poster": "gtruser033"
+  },
+  {
+    "listing_number": 6,
+    "title": "Short-Term Room Rental",
+    "description": "Furnished room available for summer semester.",
+    "price": 910,
+    "image_location": "images/housing/item_006.jpg",
+    "category": "housing",
+    "original_poster": "gtruser015"
+  },
+  {
+    "listing_number": 7,
+    "title": "Statistics Textbook",
+    "description": "Intro to Statistics for STA2023, minimal wear.",
+    "price": 73,
+    "image_location": "images/textbooks/item_007.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser090"
+  },
+  {
+    "listing_number": 8,
+    "title": "Mechanical Keyboard",
+    "description": "Clicky blue switches, good for coding.",
+    "price": 25,
+    "image_location": "images/electronics/item_008.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser024"
+  },
+  {
+    "listing_number": 9,
+    "title": "Small Bookshelf",
+    "description": "3-shelf unit, fits in dorms.",
+    "price": 184,
+    "image_location": "images/furniture/item_009.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser066"
+  },
+  {
+    "listing_number": 10,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 47,
+    "image_location": "images/apparel/item_010.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 11,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 39,
+    "image_location": "images/services/item_011.jpg",
+    "category": "services",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 12,
+    "title": "Roommate Wanted",
+    "description": "Looking for roommate in 2/2 apartment.",
+    "price": 812,
+    "image_location": "images/housing/item_012.jpg",
+    "category": "housing",
+    "original_poster": "gtruser036"
+  },
+  {
+    "listing_number": 13,
+    "title": "Calculus Textbook",
+    "description": "Calculus textbook used for MAC2311, light highlighting.",
+    "price": 136,
+    "image_location": "images/textbooks/item_013.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser060"
+  },
+  {
+    "listing_number": 14,
+    "title": "Noise Cancelling Headphones",
+    "description": "Great for studying at Library West.",
+    "price": 98,
+    "image_location": "images/electronics/item_014.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser072"
+  },
+  {
+    "listing_number": 15,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 158,
+    "image_location": "images/furniture/item_015.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 16,
+    "title": "Rain Jacket",
+    "description": "Lightweight rain jacket, great for campus storms.",
+    "price": 72,
+    "image_location": "images/apparel/item_016.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser006"
+  },
+  {
+    "listing_number": 17,
+    "title": "Tutoring in Calculus",
+    "description": "One-on-one MAC2311 tutoring, hourly rate.",
+    "price": 33,
+    "image_location": "images/services/item_017.jpg",
+    "category": "services",
+    "original_poster": "gtruser060"
+  },
+  {
+    "listing_number": 18,
+    "title": "Parking Spot Rental",
+    "description": "Reserved parking spot close to campus.",
+    "price": 359,
+    "image_location": "images/housing/item_018.jpg",
+    "category": "housing",
+    "original_poster": "gtruser048"
+  },
+  {
+    "listing_number": 19,
+    "title": "Calculus Textbook",
+    "description": "Calculus textbook used for MAC2311, light highlighting.",
+    "price": 35,
+    "image_location": "images/textbooks/item_019.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser096"
+  },
+  {
+    "listing_number": 20,
+    "title": "Used TI-84 Plus Calculator",
+    "description": "TI-84 Plus calculator in good condition.",
+    "price": 292,
+    "image_location": "images/electronics/item_020.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser027"
+  },
+  {
+    "listing_number": 21,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 188,
+    "image_location": "images/furniture/item_021.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser093"
+  },
+  {
+    "listing_number": 22,
+    "title": "Gator T-Shirt",
+    "description": "UF t-shirt, size M, barely worn.",
+    "price": 43,
+    "image_location": "images/apparel/item_022.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 23,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 44,
+    "image_location": "images/services/item_023.jpg",
+    "category": "services",
+    "original_poster": "gtruser039"
+  },
+  {
+    "listing_number": 24,
+    "title": "Roommate Wanted",
+    "description": "Looking for roommate in 2/2 apartment.",
+    "price": 708,
+    "image_location": "images/housing/item_024.jpg",
+    "category": "housing",
+    "original_poster": "gtruser072"
+  },
+  {
+    "listing_number": 25,
+    "title": "Statistics Textbook",
+    "description": "Intro to Statistics for STA2023, minimal wear.",
+    "price": 140,
+    "image_location": "images/textbooks/item_025.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser087"
+  },
+  {
+    "listing_number": 26,
+    "title": "Used TI-84 Plus Calculator",
+    "description": "TI-84 Plus calculator in good condition.",
+    "price": 146,
+    "image_location": "images/electronics/item_026.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser045"
+  },
+  {
+    "listing_number": 27,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 106,
+    "image_location": "images/furniture/item_027.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser006"
+  },
+  {
+    "listing_number": 28,
+    "title": "Gator T-Shirt",
+    "description": "UF t-shirt, size M, barely worn.",
+    "price": 38,
+    "image_location": "images/apparel/item_028.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 29,
+    "title": "Tutoring in Calculus",
+    "description": "One-on-one MAC2311 tutoring, hourly rate.",
+    "price": 55,
+    "image_location": "images/services/item_029.jpg",
+    "category": "services",
+    "original_poster": "gtruser012"
+  },
+  {
+    "listing_number": 30,
+    "title": "Parking Spot Rental",
+    "description": "Reserved parking spot close to campus.",
+    "price": 369,
+    "image_location": "images/housing/item_030.jpg",
+    "category": "housing",
+    "original_poster": "gtruser009"
+  },
+  {
+    "listing_number": 31,
+    "title": "Physics Textbook",
+    "description": "Physics for Engineers & Scientists, required for PHY2048.",
+    "price": 34,
+    "image_location": "images/textbooks/item_031.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser099"
+  },
+  {
+    "listing_number": 32,
+    "title": "Noise Cancelling Headphones",
+    "description": "Great for studying at Library West.",
+    "price": 162,
+    "image_location": "images/electronics/item_032.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser096"
+  },
+  {
+    "listing_number": 33,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 158,
+    "image_location": "images/furniture/item_033.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser027"
+  },
+  {
+    "listing_number": 34,
+    "title": "Running Shoes",
+    "description": "Lightly used running shoes, men's size 10.",
+    "price": 41,
+    "image_location": "images/apparel/item_034.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser093"
+  },
+  {
+    "listing_number": 35,
+    "title": "Math Homework Help",
+    "description": "Online or in-person math help sessions.",
+    "price": 22,
+    "image_location": "images/services/item_035.jpg",
+    "category": "services",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 36,
+    "title": "Room Sublease Near Campus",
+    "description": "1 bed available in 4x4, 10 min walk to UF.",
+    "price": 974,
+    "image_location": "images/housing/item_036.jpg",
+    "category": "housing",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 37,
+    "title": "Physics Textbook",
+    "description": "Physics for Engineers & Scientists, required for PHY2048.",
+    "price": 79,
+    "image_location": "images/textbooks/item_037.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser081"
+  },
+  {
+    "listing_number": 38,
+    "title": "24-inch Computer Monitor",
+    "description": "1080p monitor, no dead pixels.",
+    "price": 47,
+    "image_location": "images/electronics/item_038.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 39,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 123,
+    "image_location": "images/furniture/item_039.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser066"
+  },
+  {
+    "listing_number": 40,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 41,
+    "image_location": "images/apparel/item_040.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser039"
+  },
+  {
+    "listing_number": 41,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 44,
+    "image_location": "images/services/item_041.jpg",
+    "category": "services",
+    "original_poster": "gtruser087"
+  },
+  {
+    "listing_number": 42,
+    "title": "Parking Spot Rental",
+    "description": "Reserved parking spot close to campus.",
+    "price": 732,
+    "image_location": "images/housing/item_042.jpg",
+    "category": "housing",
+    "original_poster": "gtruser036"
+  },
+  {
+    "listing_number": 43,
+    "title": "Physics Textbook",
+    "description": "Physics for Engineers & Scientists, required for PHY2048.",
+    "price": 84,
+    "image_location": "images/textbooks/item_043.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser048"
+  },
+  {
+    "listing_number": 44,
+    "title": "Used TI-84 Plus Calculator",
+    "description": "TI-84 Plus calculator in good condition.",
+    "price": 246,
+    "image_location": "images/electronics/item_044.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 45,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 186,
+    "image_location": "images/furniture/item_045.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 46,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 40,
+    "image_location": "images/apparel/item_046.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser033"
+  },
+  {
+    "listing_number": 47,
+    "title": "Math Homework Help",
+    "description": "Online or in-person math help sessions.",
+    "price": 41,
+    "image_location": "images/services/item_047.jpg",
+    "category": "services",
+    "original_poster": "gtruser093"
+  },
+  {
+    "listing_number": 48,
+    "title": "Parking Spot Rental",
+    "description": "Reserved parking spot close to campus.",
+    "price": 1185,
+    "image_location": "images/housing/item_048.jpg",
+    "category": "housing",
+    "original_poster": "gtruser078"
+  },
+  {
+    "listing_number": 49,
+    "title": "Calculus Textbook",
+    "description": "Calculus textbook used for MAC2311, light highlighting.",
+    "price": 46,
+    "image_location": "images/textbooks/item_049.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser075"
+  },
+  {
+    "listing_number": 50,
+    "title": "Used TI-84 Plus Calculator",
+    "description": "TI-84 Plus calculator in good condition.",
+    "price": 219,
+    "image_location": "images/electronics/item_050.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser051"
+  },
+  {
+    "listing_number": 51,
+    "title": "Dorm Nightstand",
+    "description": "Compact nightstand with drawer.",
+    "price": 93,
+    "image_location": "images/furniture/item_051.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 52,
+    "title": "Running Shoes",
+    "description": "Lightly used running shoes, men's size 10.",
+    "price": 29,
+    "image_location": "images/apparel/item_052.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser039"
+  },
+  {
+    "listing_number": 53,
+    "title": "PC Repair Service",
+    "description": "Troubleshooting and repairs for student laptops.",
+    "price": 23,
+    "image_location": "images/services/item_053.jpg",
+    "category": "services",
+    "original_poster": "gtruser012"
+  },
+  {
+    "listing_number": 54,
+    "title": "Room Sublease Near Campus",
+    "description": "1 bed available in 4x4, 10 min walk to UF.",
+    "price": 1065,
+    "image_location": "images/housing/item_054.jpg",
+    "category": "housing",
+    "original_poster": "gtruser063"
+  },
+  {
+    "listing_number": 55,
+    "title": "Calculus Textbook",
+    "description": "Calculus textbook used for MAC2311, light highlighting.",
+    "price": 31,
+    "image_location": "images/textbooks/item_055.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser093"
+  },
+  {
+    "listing_number": 56,
+    "title": "Noise Cancelling Headphones",
+    "description": "Great for studying at Library West.",
+    "price": 49,
+    "image_location": "images/electronics/item_056.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser099"
+  },
+  {
+    "listing_number": 57,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 67,
+    "image_location": "images/furniture/item_057.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser015"
+  },
+  {
+    "listing_number": 58,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 40,
+    "image_location": "images/apparel/item_058.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser078"
+  },
+  {
+    "listing_number": 59,
+    "title": "Tutoring in Calculus",
+    "description": "One-on-one MAC2311 tutoring, hourly rate.",
+    "price": 46,
+    "image_location": "images/services/item_059.jpg",
+    "category": "services",
+    "original_poster": "gtruser048"
+  },
+  {
+    "listing_number": 60,
+    "title": "Room Sublease Near Campus",
+    "description": "1 bed available in 4x4, 10 min walk to UF.",
+    "price": 934,
+    "image_location": "images/housing/item_060.jpg",
+    "category": "housing",
+    "original_poster": "gtruser018"
+  },
+  {
+    "listing_number": 61,
+    "title": "Statistics Textbook",
+    "description": "Intro to Statistics for STA2023, minimal wear.",
+    "price": 109,
+    "image_location": "images/textbooks/item_061.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser063"
+  },
+  {
+    "listing_number": 62,
+    "title": "Mechanical Keyboard",
+    "description": "Clicky blue switches, good for coding.",
+    "price": 124,
+    "image_location": "images/electronics/item_062.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser063"
+  },
+  {
+    "listing_number": 63,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 87,
+    "image_location": "images/furniture/item_063.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser078"
+  },
+  {
+    "listing_number": 64,
+    "title": "Gator T-Shirt",
+    "description": "UF t-shirt, size M, barely worn.",
+    "price": 48,
+    "image_location": "images/apparel/item_064.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser090"
+  },
+  {
+    "listing_number": 65,
+    "title": "PC Repair Service",
+    "description": "Troubleshooting and repairs for student laptops.",
+    "price": 58,
+    "image_location": "images/services/item_065.jpg",
+    "category": "services",
+    "original_poster": "gtruser015"
+  },
+  {
+    "listing_number": 66,
+    "title": "Room Sublease Near Campus",
+    "description": "1 bed available in 4x4, 10 min walk to UF.",
+    "price": 769,
+    "image_location": "images/housing/item_066.jpg",
+    "category": "housing",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 67,
+    "title": "Calculus Textbook",
+    "description": "Calculus textbook used for MAC2311, light highlighting.",
+    "price": 93,
+    "image_location": "images/textbooks/item_067.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser042"
+  },
+  {
+    "listing_number": 68,
+    "title": "Mechanical Keyboard",
+    "description": "Clicky blue switches, good for coding.",
+    "price": 87,
+    "image_location": "images/electronics/item_068.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser069"
+  },
+  {
+    "listing_number": 69,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 82,
+    "image_location": "images/furniture/item_069.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser072"
+  },
+  {
+    "listing_number": 70,
+    "title": "Rain Jacket",
+    "description": "Lightweight rain jacket, great for campus storms.",
+    "price": 30,
+    "image_location": "images/apparel/item_070.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser087"
+  },
+  {
+    "listing_number": 71,
+    "title": "PC Repair Service",
+    "description": "Troubleshooting and repairs for student laptops.",
+    "price": 49,
+    "image_location": "images/services/item_071.jpg",
+    "category": "services",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 72,
+    "title": "Roommate Wanted",
+    "description": "Looking for roommate in 2/2 apartment.",
+    "price": 979,
+    "image_location": "images/housing/item_072.jpg",
+    "category": "housing",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 73,
+    "title": "Organic Chemistry Textbook",
+    "description": "Orgo textbook for CHM2210/2211, good condition.",
+    "price": 58,
+    "image_location": "images/textbooks/item_073.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser024"
+  },
+  {
+    "listing_number": 74,
+    "title": "Used TI-84 Plus Calculator",
+    "description": "TI-84 Plus calculator in good condition.",
+    "price": 99,
+    "image_location": "images/electronics/item_074.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser054"
+  },
+  {
+    "listing_number": 75,
+    "title": "Small Bookshelf",
+    "description": "3-shelf unit, fits in dorms.",
+    "price": 174,
+    "image_location": "images/furniture/item_075.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser042"
+  },
+  {
+    "listing_number": 76,
+    "title": "Rain Jacket",
+    "description": "Lightweight rain jacket, great for campus storms.",
+    "price": 36,
+    "image_location": "images/apparel/item_076.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser051"
+  },
+  {
+    "listing_number": 77,
+    "title": "Math Homework Help",
+    "description": "Online or in-person math help sessions.",
+    "price": 26,
+    "image_location": "images/services/item_077.jpg",
+    "category": "services",
+    "original_poster": "gtruser012"
+  },
+  {
+    "listing_number": 78,
+    "title": "Room Sublease Near Campus",
+    "description": "1 bed available in 4x4, 10 min walk to UF.",
+    "price": 949,
+    "image_location": "images/housing/item_078.jpg",
+    "category": "housing",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 79,
+    "title": "Physics Textbook",
+    "description": "Physics for Engineers & Scientists, required for PHY2048.",
+    "price": 30,
+    "image_location": "images/textbooks/item_079.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser003"
+  },
+  {
+    "listing_number": 80,
+    "title": "Mechanical Keyboard",
+    "description": "Clicky blue switches, good for coding.",
+    "price": 86,
+    "image_location": "images/electronics/item_080.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser051"
+  },
+  {
+    "listing_number": 81,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 133,
+    "image_location": "images/furniture/item_081.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser084"
+  },
+  {
+    "listing_number": 82,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 24,
+    "image_location": "images/apparel/item_082.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser015"
+  },
+  {
+    "listing_number": 83,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 44,
+    "image_location": "images/services/item_083.jpg",
+    "category": "services",
+    "original_poster": "gtruser009"
+  },
+  {
+    "listing_number": 84,
+    "title": "Roommate Wanted",
+    "description": "Looking for roommate in 2/2 apartment.",
+    "price": 896,
+    "image_location": "images/housing/item_084.jpg",
+    "category": "housing",
+    "original_poster": "gtruser030"
+  },
+  {
+    "listing_number": 85,
+    "title": "Statistics Textbook",
+    "description": "Intro to Statistics for STA2023, minimal wear.",
+    "price": 41,
+    "image_location": "images/textbooks/item_085.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser009"
+  },
+  {
+    "listing_number": 86,
+    "title": "Mechanical Keyboard",
+    "description": "Clicky blue switches, good for coding.",
+    "price": 206,
+    "image_location": "images/electronics/item_086.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser009"
+  },
+  {
+    "listing_number": 87,
+    "title": "Small Bookshelf",
+    "description": "3-shelf unit, fits in dorms.",
+    "price": 73,
+    "image_location": "images/furniture/item_087.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser048"
+  },
+  {
+    "listing_number": 88,
+    "title": "UF Hoodie",
+    "description": "Orange and blue UF hoodie, size L.",
+    "price": 55,
+    "image_location": "images/apparel/item_088.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser081"
+  },
+  {
+    "listing_number": 89,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 25,
+    "image_location": "images/services/item_089.jpg",
+    "category": "services",
+    "original_poster": "gtruser033"
+  },
+  {
+    "listing_number": 90,
+    "title": "Parking Spot Rental",
+    "description": "Reserved parking spot close to campus.",
+    "price": 722,
+    "image_location": "images/housing/item_090.jpg",
+    "category": "housing",
+    "original_poster": "gtruser006"
+  },
+  {
+    "listing_number": 91,
+    "title": "Organic Chemistry Textbook",
+    "description": "Orgo textbook for CHM2210/2211, good condition.",
+    "price": 119,
+    "image_location": "images/textbooks/item_091.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser066"
+  },
+  {
+    "listing_number": 92,
+    "title": "24-inch Computer Monitor",
+    "description": "1080p monitor, no dead pixels.",
+    "price": 147,
+    "image_location": "images/electronics/item_092.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser054"
+  },
+  {
+    "listing_number": 93,
+    "title": "Gaming Chair",
+    "description": "Comfortable chair for long gaming sessions.",
+    "price": 199,
+    "image_location": "images/furniture/item_093.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser021"
+  },
+  {
+    "listing_number": 94,
+    "title": "Running Shoes",
+    "description": "Lightly used running shoes, men's size 10.",
+    "price": 14,
+    "image_location": "images/apparel/item_094.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser093"
+  },
+  {
+    "listing_number": 95,
+    "title": "Dog Walking Service",
+    "description": "Evening dog walks near campus.",
+    "price": 22,
+    "image_location": "images/services/item_095.jpg",
+    "category": "services",
+    "original_poster": "gtruser090"
+  },
+  {
+    "listing_number": 96,
+    "title": "Roommate Wanted",
+    "description": "Looking for roommate in 2/2 apartment.",
+    "price": 612,
+    "image_location": "images/housing/item_096.jpg",
+    "category": "housing",
+    "original_poster": "gtruser045"
+  },
+  {
+    "listing_number": 97,
+    "title": "Organic Chemistry Textbook",
+    "description": "Orgo textbook for CHM2210/2211, good condition.",
+    "price": 28,
+    "image_location": "images/textbooks/item_097.jpg",
+    "category": "textbooks",
+    "original_poster": "gtruser039"
+  },
+  {
+    "listing_number": 98,
+    "title": "24-inch Computer Monitor",
+    "description": "1080p monitor, no dead pixels.",
+    "price": 188,
+    "image_location": "images/electronics/item_098.jpg",
+    "category": "electronics",
+    "original_poster": "gtruser054"
+  },
+  {
+    "listing_number": 99,
+    "title": "IKEA Study Desk",
+    "description": "White desk with minor scratches.",
+    "price": 91,
+    "image_location": "images/furniture/item_099.jpg",
+    "category": "furniture",
+    "original_poster": "gtruser069"
+  },
+  {
+    "listing_number": 100,
+    "title": "Running Shoes",
+    "description": "Lightly used running shoes, men's size 10.",
+    "price": 78,
+    "image_location": "images/apparel/item_100.jpg",
+    "category": "apparel",
+    "original_poster": "gtruser066"
+  }
+]
