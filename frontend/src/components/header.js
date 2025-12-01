@@ -42,7 +42,7 @@ const Header = (props) => {
               <div className="header__link"><span>Browse Listings</span></div>
             </Link>
 
-            <Link to="/create-listing">
+            <Link to="/list">
               <div className="header__link"><span>Sell Items</span></div>
             </Link>
 

@@ -16,7 +16,6 @@ const PreLogin = () => {
         }
     }, []);
 
-    // ⭐ Fix for hash links (#browse, #sell, etc.) inside BrowserRouter
     useEffect(() => {
         const hash = window.location.hash
         if (hash) {
@@ -34,7 +33,6 @@ const PreLogin = () => {
 
             <Header />
 
-            {/* ⭐ SECTION: Browse Listings (anchor target) */}
             <section id="browse"></section>
 
             <section id="account-section" className="aqa">
@@ -103,7 +101,6 @@ const PreLogin = () => {
 
                     <aside className="aqa__action">
 
-                        {/* ⭐ SECTION: Sell Items */}
                         <section id="sell"></section>
 
                         <div className="aqa-action-header">
@@ -113,7 +110,7 @@ const PreLogin = () => {
                             </p>
                         </div>
 
-                        <Link to="/create-listing">
+                        <Link to="/list">
                             <button className="btn-primary btn aqa-cta">Post a Listing</button>
                         </Link>
 
@@ -158,7 +155,6 @@ const PreLogin = () => {
                 </div>
             </section>
 
-            {/* ⭐ More sections for header anchor links */}
             <section id="how-it-works"></section>
             <section id="safety"></section>
             <section id="contact"></section>

@@ -3,28 +3,29 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import "./prelogin.css"
 
-const UpdateAccount = () => {
-  const [authUsername, setAuthUsername] = useState("")
-  const [authPassword, setAuthPassword] = useState("")
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+const AddListing = () => {
 
-  const [accountData, setAccountData] = useState(null)
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [phoneNumber, setPhoneNumber] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [isSeller, setIsSeller] = useState(false)
+  const [username, setAuthUsername] = useState("")
+  const [password, setAuthPassword] = useState("")
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [authenticatedUser, setAuthenticatedUser] = useState(null)
+
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [price, setPrice] = useState("")
+  const [category, setCategory] = useState("")
 
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const [loading, setLoading] = useState(false)
 
-  const handleAuthenticate = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError("")
+
     try {
-      const response = await fetch(`http://localhost:8000/gatormarket/accounts/?username=${authUsername}`, {
+      const response = await fetch(`http://localhost:8000/gatormarket/accounts/?username=${username}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -36,94 +37,87 @@ const UpdateAccount = () => {
         return
       }
       const accounts = await response.json()
-      const account = accounts.find((acc) => acc.username === authUsername)
+      const account = accounts.find((acc) => acc.username === username)
       if (!account) {
         setError("Account not found.")
         setLoading(false)
         return
       }
-      if (account.password !== authPassword) {
+      if (account.password !== password) {
         setError("Incorrect password.")
         setLoading(false)
         return
       }
-      setAccountData(account)
-      setUsername(account.username)
-      setEmail(account.email)
-      setPhoneNumber(account.phone_number)
-      setIsSeller(account.isseller || false)
+
+      if (!account.isseller) {
+        setError("Access denied. Admin privileges required.")
+        setLoading(false)
+        return
+      }
+      setAuthenticatedUser(account)
       setIsAuthenticated(true)
-      setError("")
     } catch (err) {
-      console.error("Authentication error:", err)
-      setError(`Error: ${err.message || "Authentication failed"}`)
+      console.error("Login error:", err)
+      setError(err.message || "Failed to authenticate")
     } finally {
       setLoading(false)
     }
   }
-  const handleUpdateAccount = async (e) => {
+
+  const handleAddListing = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError("")
     setSuccess("")
-    if (!email.endsWith("@ufl.edu")) {
-      setError("Only UFL email addresses are allowed.")
-      setLoading(false)
-      return
-    }
+
     try {
-      const updateData = {
-        username: username,
-        email: email,
-        phone_number: phoneNumber,
-        rating: accountData.rating,
-        isseller: isSeller,
-        isadmin: accountData.isadmin,
+      const listingData = {
+        title: title,
+        description: description,
+        price: Number.parseInt(price),
+        image_location: "",
+        category: category,
+        original_poster: authenticatedUser.username,
       }
-      if (newPassword.trim() !== "") {
-        updateData.password = newPassword
-      } else {
-        updateData.password = accountData.password
-      }
-      const response = await fetch(`http://localhost:8000/gatormarket/accounts/${accountData.account_number}/`, {
-        method: "PUT",
+
+      const response = await fetch(`http://localhost:8000/gatormarket/listings/`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(updateData),
+        body: JSON.stringify(listingData),
       })
+
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        setError("Backend server is not available. Please ensure the API server is running on localhost:8000")
+        setLoading(false)
+        return
+      }
+
       const result = await response.json()
+
       if (response.ok) {
-        setSuccess("Account updated successfully!")
-        setAccountData(result)
-        setNewPassword("") 
-        const storedAccount = localStorage.getItem("account")
-        if (storedAccount) {
-          const parsed = JSON.parse(storedAccount)
-          if (parsed.account_number === result.account_number) {
-            localStorage.setItem("account", JSON.stringify(result))
-          }
-        }
+        setSuccess(`Listing "${title}" added successfully!`)
+        setTitle("")
+        setDescription("")
+        setPrice("")
+        setCategory("")
       } else {
-        let errorMessage = "Failed to update account."
-        if (result.error) {
-          errorMessage = typeof result.error === "string" ? result.error : JSON.stringify(result.error)
-        } else if (result.message) {
-          errorMessage = result.message
-        }
-        setError(errorMessage)
+        setError(result.error || "Failed to add listing.")
       }
     } catch (err) {
-      console.error("Update error:", err)
-      setError(`Error: ${err.message || "Unknown error occurred"}`)
+      setError("Backend server is not available. Please ensure the API server is running on localhost:8000")
     } finally {
       setLoading(false)
     }
   }
+
   const closeDialog = () => {
     setError("")
     setSuccess("")
   }
+
   const Dialog = ({ message, onClose, type = "error" }) => {
     if (!message) return null
     return (
@@ -176,9 +170,11 @@ const UpdateAccount = () => {
       </div>
     )
   }
+
   return (
     <div className="prelogin-container1">
       <Header />
+
       <aside
         className="aqa__action"
         style={{
@@ -196,31 +192,34 @@ const UpdateAccount = () => {
               style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}
             >
               <h3 className="aqa-action-title" style={{ margin: 0 }}>
-                Update Account Information
+                Add New Listing
               </h3>
             </div>
+
             <div className="aqa-widgets">
-              <form onSubmit={handleAuthenticate}>
+              <form onSubmit={handleLogin}>
                 <div className="aqa-widget">
                   <label>Username:</label>
                   <input
                     type="text"
-                    value={authUsername}
+                    value={username}
                     placeholder="Enter your username"
                     onChange={(e) => setAuthUsername(e.target.value)}
                     required
                   />
                 </div>
+
                 <div className="aqa-widget" style={{ marginTop: "10px", marginBottom: "10px" }}>
                   <label>Password:</label>
                   <input
                     type="password"
-                    value={authPassword}
+                    value={password}
                     placeholder="Enter your password"
                     onChange={(e) => setAuthPassword(e.target.value)}
                     required
                   />
                 </div>
+
                 <button type="submit" className="btn-primary btn aqa-cta" disabled={loading}>
                   {loading ? "Authenticating..." : "Authenticate"}
                 </button>
@@ -234,87 +233,99 @@ const UpdateAccount = () => {
               style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "4px" }}
             >
               <h3 className="aqa-action-title" style={{ margin: 0 }}>
-                Update Your Information
+                Create New Listing
               </h3>
             </div>
             <p style={{ marginBottom: "20px", color: "#6b7280" }}>
-              Update your account details below. Leave password blank to keep it unchanged.
+              Logged in as: <strong>{authenticatedUser.username}</strong>
             </p>
+
             <div className="aqa-widgets">
-              <form onSubmit={handleUpdateAccount}>
+              <form onSubmit={handleAddListing}>
                 <div className="aqa-widget">
-                  <label>Username:</label>
+                  <label>Title:</label>
                   <input
                     type="text"
-                    value={username}
-                    placeholder="Enter your username"
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={title}
+                    placeholder="Enter listing title"
+                    onChange={(e) => setTitle(e.target.value)}
                     required
                   />
                 </div>
+
                 <div className="aqa-widget" style={{ marginTop: "10px" }}>
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    value={email}
-                    placeholder="Enter your UFL email"
-                    onChange={(e) => setEmail(e.target.value)}
+                  <label>Description:</label>
+                  <textarea
+                    value={description}
+                    placeholder="Enter listing description"
+                    onChange={(e) => setDescription(e.target.value)}
                     required
+                    style={{
+                      width: "100%",
+                      minHeight: "100px",
+                      padding: "8px",
+                      borderRadius: "4px",
+                      border: "1px solid #d1d5db",
+                      fontFamily: "inherit",
+                      fontSize: "14px",
+                    }}
                   />
                 </div>
+
                 <div className="aqa-widget" style={{ marginTop: "10px" }}>
-                  <label>Phone Number:</label>
+                  <label>Price ($):</label>
                   <input
-                    type="tel"
-                    value={phoneNumber}
-                    placeholder="Enter your phone number"
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={price}
+                    placeholder="Enter price"
+                    onChange={(e) => setPrice(e.target.value)}
                     required
                   />
                 </div>
+
                 <div className="aqa-widget" style={{ marginTop: "10px", marginBottom: "10px" }}>
-                  <label>New Password (optional):</label>
+                  <label>Category:</label>
                   <input
-                    type="password"
-                    value={newPassword}
-                    placeholder="Leave blank to keep current password"
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    type="text"
+                    value={category}
+                    placeholder="Enter category (e.g., Electronics, Books, Clothing)"
+                    onChange={(e) => setCategory(e.target.value)}
+                    required
                   />
                 </div>
-                <div className="aqa-widget" style={{ marginTop: "10px", marginBottom: "10px" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}>
-                    <input
-                      type="checkbox"
-                      checked={isSeller}
-                      onChange={(e) => setIsSeller(e.target.checked)}
-                      style={{ width: "18px", height: "18px", cursor: "pointer" }}
-                    />
-                    <span>Enable selling on my account</span>
-                  </label>
-                  <p style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px", marginLeft: "26px" }}>
-                    Check this box to enable selling capabilities on your account
-                  </p>
-                </div>
+
                 <button type="submit" className="btn-primary btn aqa-cta" disabled={loading}>
-                  {loading ? "Updating..." : "Update Account"}
+                  {loading ? "Adding Listing..." : "Add Listing"}
                 </button>
+
                 <button
                   type="button"
-                  onClick={() => setIsAuthenticated(false)}
+                  onClick={() => {
+                    setIsAuthenticated(false)
+                    setTitle("")
+                    setDescription("")
+                    setPrice("")
+                    setCategory("")
+                  }}
                   className="btn aqa-cta"
                   style={{ background: "#6b7280", color: "#fff", marginTop: "8px" }}
                 >
-                  Cancel
+                  Logout
                 </button>
               </form>
             </div>
           </>
         )}
       </aside>
+
       <Footer />
+
       <Dialog message={error} onClose={closeDialog} type="error" />
       <Dialog message={success} onClose={closeDialog} type="success" />
     </div>
   )
 }
-export default UpdateAccount
+
+export default AddListing

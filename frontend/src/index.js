@@ -14,6 +14,7 @@ import SignUp from './pages/signup'
 import Listings from './pages/listings'
 import AdminListings from './pages/admin'
 import UpdateAccount from './pages/updateaccount'
+import AddListing from './pages/AddListing'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/admin" component={AdminListings} />
         <Route exact path="/account" component={UpdateAccount} />
+        <Route exact path="/list" component={AddListing} />
         {/* */}
         <Route exact path="/listings" component={Listings} />
 
