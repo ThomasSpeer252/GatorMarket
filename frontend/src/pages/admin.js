@@ -283,14 +283,14 @@ const AdminListings = () => {
               </thead>
               <tbody>
                 {listings.map((listing) => (
-                  <tr key={listing.id} style={{ borderBottom: "1px solid #e5e7eb" }}>
-                    <td style={{ padding: "12px" }}>{listing.id}</td>
+                  <tr key={listing.listing_number} style={{ borderBottom: "1px solid #e5e7eb" }}>
+                    <td style={{ padding: "12px" }}>{listing.listing_number}</td>
                     <td style={{ padding: "12px" }}>{listing.title}</td>
                     <td style={{ padding: "12px" }}>${listing.price}</td>
-                    <td style={{ padding: "12px" }}>{listing.username}</td>
+                    <td style={{ padding: "12px" }}>{listing.original_poster}</td>
                     <td style={{ padding: "12px" }}>
                       <button
-                        onClick={() => handleDeleteListing(listing.id)}
+                        onClick={() => handleDeleteListing(listing.listing_number)}
                         disabled={loading}
                         style={{
                           padding: "6px 12px",

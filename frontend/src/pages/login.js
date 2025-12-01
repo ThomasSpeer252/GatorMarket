@@ -6,7 +6,7 @@ import Footer from '../components/footer'
 import './prelogin.css'
 
 const Login = (props) => {
-  const [email, setEmail] = useState("");
+  const [username, setUname] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,12 +14,6 @@ const Login = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    if (!email.endsWith("@ufl.edu")) {
-      setError("Only UFL email addresses are allowed.");
-      setLoading(false);
-      return;
-    }
 
     try {
       const response = await fetch("http://localhost:8000/gatormarket/accounts/");
@@ -29,7 +23,7 @@ const Login = (props) => {
       const data = await response.json();
       const accounts = Array.isArray(data) ? data : data.results || [];   
       const account = accounts.find(
-        (acc) => acc.email === email && acc.password === password
+        (acc) => acc.username === username && acc.password === password
       );
 
       if (account) {
@@ -38,7 +32,7 @@ const Login = (props) => {
         setError("");
         window.location.href = "/listings";
       } else {
-        setError("Invalid email or password.");
+        setError("Invalid username or password.");
       }
     } catch (err) {
       setError("An error occurred during login. Please try again.");
@@ -132,12 +126,12 @@ const Login = (props) => {
         <div className="aqa-widgets">
           <form onSubmit={handleLogin}>
             <div className="aqa-widget">
-              <label>Email:</label>
+              <label>Username:</label>
               <input
-                type="email"
-                value={email}
-                placeholder="Enter your UFL email"
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={username}
+                placeholder="Enter your GatorMarket username"
+                onChange={(e) => setUname(e.target.value)}
                 required
               />
             </div>
