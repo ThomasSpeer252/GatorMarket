@@ -25,3 +25,4 @@ urlpatterns = [
     path('core/', include('core.urls')),
 ]
 
+urlpatterns += static("/images/", document_root=settings.MEDIA_ROOT)
