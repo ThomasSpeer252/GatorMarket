@@ -22,11 +22,12 @@ const Login = (props) => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/accounts/");
+      const response = await fetch("http://localhost:8000/gatormarket/accounts/");
       if (!response.ok) {
         throw new Error("Failed to fetch accounts");
       }
-      const accounts = await response.json();
+      const data = await response.json();
+      const accounts = Array.isArray(data) ? data : data.results || [];   
       const account = accounts.find(
         (acc) => acc.email === email && acc.password === password
       );
