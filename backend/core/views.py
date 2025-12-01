@@ -121,14 +121,9 @@ def account_api(request, account_number=None):
                 acc.password = data.get("password", acc.password)
                 acc.email = data.get("email", acc.email)
                 acc.phone_number = data.get("phone_number", acc.phone_number)
-                # rating field may or may not exist in DB; use get with default
-                if "rating" in data:
-                    acc.rating = data.get("rating", acc.rating)
-                if "isseller" in data:
-                    acc.isseller = data.get("isseller", acc.isseller)
-                if "isadmin" in data:
-                    acc.isadmin = data.get("isadmin", acc.isadmin)
-
+                acc.rating = data.get("rating", acc.rating)
+                acc.isseller = data.get("isseller", acc.isseller)
+                acc.isadmin = data.get("isadmin", acc.isadmin)
                 acc.save()
 
                 acc_data = {
