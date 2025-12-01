@@ -16,7 +16,6 @@ def test_api(request):
 
 @csrf_exempt
 def listings_api(request):
-    # listings with category -1 don't appear (sold)
     if request.method == "GET":
         # all active listings, newest first
         listings = Listing.objects.exclude(category='-1').order_by('-listing_number')

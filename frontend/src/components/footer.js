@@ -87,7 +87,7 @@ const Footer = (props) => {
                 <li><a href="#"><div className="footer-link"><span>Report Issue</span></div></a></li>
                 <li><a href="#"><div className="footer-link"><span>FAQs</span></div></a></li>
                 <li><a href="#"><div className="footer-link"><span>Contact Us</span></div></a></li>
-                <li><a href="#"><div className="footer-link"><span>Feedback</span></div></a></li>
+                <li><a href="/admin"><div className="footer-link"><span>Admin Center</span></div></a></li>
               </ul>
             </div>
 

@@ -64,17 +64,17 @@ const Header = (props) => {
               </svg>
             </button>
 
-            <button aria-label="View account" className="header__icon-btn">
+            <a href="/account" aria-label="View account" className="header__icon-btn">
               <svg width="24" height="24" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                   <circle r="4" cx="12" cy="7"></circle>
                 </g>
               </svg>
-            </button>
+            </a>
 
-            <Link to="/login" className="btn-primary btn">
-              Sign In
+            <Link to="/signup" className="btn-primary btn">
+              Sign Up
             </Link>
 
           </div>
