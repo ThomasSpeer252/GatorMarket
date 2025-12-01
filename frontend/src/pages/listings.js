@@ -123,7 +123,7 @@ const Listings = () => {
               {/* IMAGE */}
               {item.image_location ? (
                 <img
-                  src={`http://localhost:8000${item.image_location}`}
+                  src={`http://localhost:8000/${item.image_location.replace(/^\/?/, '')}`}
                   alt={item.title}
                   style={{
                     width: "100%",
