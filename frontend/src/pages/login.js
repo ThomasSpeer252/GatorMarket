@@ -9,17 +9,42 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!email.endsWith("@ufl.edu")) {
       setError("Only UFL email addresses are allowed.");
+      setLoading(false);
       return;
     }
-    setError("Good Input");
-    // history.push("/");
-    // API implementation to create account goes here
+
+    try {
+      const response = await fetch("http://localhost:8000/api/accounts/");
+      if (!response.ok) {
+        throw new Error("Failed to fetch accounts");
+      }
+      const accounts = await response.json();
+      const account = accounts.find(
+        (acc) => acc.email === email && acc.password === password
+      );
+
+      if (account) {
+        localStorage.setItem("account", JSON.stringify(account));
+        localStorage.setItem("isLoggedIn", "true");
+        setError("");
+        window.location.href = "/listings";
+      } else {
+        setError("Invalid email or password.");
+      }
+    } catch (err) {
+      setError("An error occurred during login. Please try again.");
+      console.error("Login error:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const closeDialog = () => setError("");
@@ -127,8 +152,8 @@ const Login = (props) => {
               />
             </div>
 
-            <button type="submit" className="btn-primary btn aqa-cta">
-              Login
+            <button type="submit" className="btn-primary btn aqa-cta" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
         </div>

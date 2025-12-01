@@ -6,20 +6,59 @@ import Footer from '../components/footer'
 import './prelogin.css'
 
 const SignUp = (props) => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!email.endsWith("@ufl.edu")) {
       setError("Only UFL email addresses are allowed.");
+      setLoading(false);
       return;
     }
-    setError("Good Input");
-    // history.push("/");
-    // API implementation to create account goes here
+
+    try {
+      const response = await fetch("http://localhost:8000/gatormarket/accounts/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          email: email,
+          phone_number: phoneNumber,
+          rating: 0,
+          isseller: false,
+          isadmin: false,
+        }),
+      });
+
+      const result = await response.json();
+      console.log("Sign up response:", result, "Status:", response.status);
+
+      if (response.ok) {
+        setError("");
+        localStorage.setItem("account", JSON.stringify(result));
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "/listings";
+      } else {
+        const errorMessage = result.error || JSON.stringify(result) || "Failed to create account.";
+        setError(errorMessage);
+        console.error("Sign up error response:", errorMessage);
+      }
+    } catch (err) {
+      console.error("Sign up error:", err);
+      setError(`Error: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const closeDialog = () => setError("");
@@ -106,6 +145,17 @@ const SignUp = (props) => {
         <div className="aqa-widgets">
           <form onSubmit={handleSignUp}>
             <div className="aqa-widget">
+              <label>Username:</label>
+              <input
+                type="text"
+                value={username}
+                placeholder="Enter your username"
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="aqa-widget" style={{ marginTop: "10px" }}>
               <label>Email:</label>
               <input
                 type="email"
@@ -116,7 +166,7 @@ const SignUp = (props) => {
               />
             </div>
 
-            <div className="aqa-widget" style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <div className="aqa-widget" style={{ marginTop: "10px" }}>
               <label>Password:</label>
               <input
                 type="password"
@@ -127,8 +177,19 @@ const SignUp = (props) => {
               />
             </div>
 
-            <button type="submit" className="btn-primary btn aqa-cta">
-              Sign Up
+            <div className="aqa-widget" style={{ marginTop: "10px", marginBottom: "10px" }}>
+              <label>Phone Number:</label>
+              <input
+                type="tel"
+                value={phoneNumber}
+                placeholder="Enter your phone number"
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn-primary btn aqa-cta" disabled={loading}>
+              {loading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>
         </div>
