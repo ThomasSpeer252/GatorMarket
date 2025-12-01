@@ -15,7 +15,40 @@ def test_api(request):
 
 
 @csrf_exempt
-def listings_api(request):
+def listings_api(request, listing_number=None):
+    # If a listing_number is provided, operate on that single listing (DELETE/GET)
+    if listing_number is not None:
+        if request.method == "DELETE":
+            try:
+                try:
+                    listing = Listing.objects.get(listing_number=listing_number)
+                except Listing.DoesNotExist:
+                    return JsonResponse({"error": "Listing not found"}, status=404)
+                listing.delete()
+                return JsonResponse({"message": "Listing deleted"}, status=200)
+            except Exception as e:
+                return JsonResponse({"error": str(e)}, status=500)
+        elif request.method == "GET":
+            try:
+                listing = Listing.objects.get(listing_number=listing_number)
+                item = {
+                    "listing_number": listing.listing_number,
+                    "title": listing.title,
+                    "description": listing.description,
+                    "date_created": listing.date_created,
+                    "price": listing.price,
+                    "image_location": listing.image_location,
+                    "category": listing.category,
+                    "original_poster": listing.original_poster,
+                }
+                if item.get("image_location"):
+                    item["image_url"] = request.build_absolute_uri(settings.MEDIA_URL + item["image_location"])
+                return JsonResponse(item, safe=False)
+            except Listing.DoesNotExist:
+                return JsonResponse({"error": "Listing not found"}, status=404)
+        else:
+            return JsonResponse({"error": "Invalid request method"}, status=405)
+
     # listings with category -1 don't appear (sold)
     if request.method == "GET":
         # all active listings, newest first
