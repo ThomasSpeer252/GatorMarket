@@ -7,6 +7,14 @@ import Footer from '../components/footer'
 import './prelogin.css'
 
 const PreLogin = () => {
+    //automatically redirects to listings page if user is logged in
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        if (isLoggedIn) {
+            window.location.href = "/listings"; 
+        }
+    }, []);
 
     // ⭐ Fix for hash links (#browse, #sell, etc.) inside BrowserRouter
     useEffect(() => {
