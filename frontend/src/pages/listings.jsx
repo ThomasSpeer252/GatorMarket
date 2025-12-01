@@ -30,7 +30,7 @@ const Listings = () => {
           }}>
             {item.image_url && (
               <img
-                src={item.image_url}
+                src={`http://localhost:8000/${item.image_location.replace(/^\/?/, '')}`}
                 alt={item.title}
                 style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "8px" }}
               />
