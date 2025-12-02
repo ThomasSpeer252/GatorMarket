@@ -12,12 +12,15 @@ import PreLogin from './pages/prelogin'
 import Login from './pages/login'
 import SignUp from './pages/signup'
 import Listings from './pages/listings'
+import ListingDetails from './pages/listingdetails';
 import AdminListings from './pages/admin'
 import UpdateAccount from './pages/updateaccount'
 import AddListing from './pages/AddListing'
 import HowItWorks from './pages/how-it-works'
 import SafetyTips from './pages/safety-tips'
 import Contact from './pages/contact'
+import OrderConfirmed from './pages/orderconfirmed'
+
 
 const App = () => {
   return (
@@ -30,12 +33,16 @@ const App = () => {
         <Route exact path="/account" component={UpdateAccount} />
         <Route exact path="/list" component={AddListing} />
         {/* */}
+        <Route path="/listings/:id" component={ListingDetails} />
         <Route exact path="/listings" component={Listings} />
         <Route exact path="/how-it-works" component={HowItWorks} />
         <Route exact path="/safety-tips" component={SafetyTips} />
         <Route exact path="/contact" component={Contact} />
 
 
+        <Route exact path="/order-confirmed" component={OrderConfirmed} />
+
+	
 
         <Redirect to="/" />
       </Switch>
