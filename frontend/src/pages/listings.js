@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { Link } from "react-router-dom";
 
 const Listings = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  //Filters
+
+  // Filters
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  //Pagination
+
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const listingsPerPage = 16;
+
   useEffect(() => {
     fetchListings();
   }, []);
@@ -26,22 +30,26 @@ const Listings = () => {
     if (keyword) url += `keyword=${keyword}&`;
     if (minPrice) url += `min_price=${minPrice}&`;
     if (maxPrice) url += `max_price=${maxPrice}&`;
+
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Backend error: ${res.status}`);
+
       const data = await res.json();
       setListings(data);
-      setCurrentPage(1); // reset to page 1 after filtering
+      setCurrentPage(1);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
   const indexOfLast = currentPage * listingsPerPage;
   const indexOfFirst = indexOfLast - listingsPerPage;
   const currentListings = listings.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(listings.length / listingsPerPage);
+
   const goToPage = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -84,22 +92,27 @@ const Listings = () => {
             <option value="Furniture">Furniture</option>
             <option value="Services">Services</option>
           </select>
+
           <input
             type="number"
             placeholder="Min Price"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
           />
+
           <input
             type="number"
             placeholder="Max Price"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
           />
+
           <button onClick={fetchListings}>Apply</button>
         </div>
+
         {loading && <p>Loading listings...</p>}
         {error && <p style={{ color: "red" }}>Error: {error}</p>}
+
         {/* LISTINGS GRID */}
         <div
           style={{
@@ -110,20 +123,28 @@ const Listings = () => {
           }}
         >
           {currentListings.map((item) => (
-            <div
-              key={item.listing_number}
-              style={{
-                border: "1px solid #ddd",
-                padding: "20px",
-                borderRadius: "8px",
-                background: "white",
-              }}
-            >
+            <Link
+ 		 to={`/listings/${item.listing_number}`}
+ 		 key={item.listing_number}
+ 		 style={{
+    			display: 'block',
+   			 border: '1px solid #ddd',
+   			 padding: '20px',
+   			 borderRadius: '8px',
+   			 background: 'white',
+    			 textDecoration: 'none',
+   			 color: 'black',
+  		}}
+		>
               <h3>{item.title}</h3>
+
               {/* IMAGE */}
               {item.image_location ? (
                 <img
-                  src={`http://localhost:8000/${item.image_location.replace(/^\/?/, '')}`}
+                  src={`http://localhost:8000/${item.image_location.replace(
+                    /^\/?/,
+                    ""
+                  )}`}
                   alt={item.title}
                   style={{
                     width: "100%",
@@ -142,21 +163,23 @@ const Listings = () => {
                   }}
                 ></div>
               )}
-              <p>{item.description}</p>
 
+              <p>{item.description}</p>
               <p>
                 <strong>Price:</strong> ${item.price}
               </p>
               <p>
                 <strong>Category:</strong> {item.category}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
+
         {/* No results */}
         {!loading && currentListings.length === 0 && (
           <p>No listings found.</p>
         )}
+
         {/* PAGINATION */}
         {totalPages > 1 && (
           <div
@@ -169,7 +192,6 @@ const Listings = () => {
               flexWrap: "wrap",
             }}
           >
-            {/* Prev */}
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
@@ -185,28 +207,24 @@ const Listings = () => {
               Prev
             </button>
 
-            {/* Page numbers */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-              (num) => (
-                <button
-                  key={num}
-                  onClick={() => goToPage(num)}
-                  style={{
-                    padding: "8px 14px",
-                    border: "2px solid black",
-                    borderRadius: "6px",
-                    fontWeight: "bold",
-                    background: num === currentPage ? "#000" : "white",
-                    color: num === currentPage ? "white" : "black",
-                    cursor: "pointer",
-                  }}
-                >
-                  {num}
-                </button>
-              )
-            )}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+              <button
+                key={num}
+                onClick={() => goToPage(num)}
+                style={{
+                  padding: "8px 14px",
+                  border: "2px solid black",
+                  borderRadius: "6px",
+                  fontWeight: "bold",
+                  background: num === currentPage ? "#000" : "white",
+                  color: num === currentPage ? "white" : "black",
+                  cursor: "pointer",
+                }}
+              >
+                {num}
+              </button>
+            ))}
 
-            {/* Next */}
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
@@ -230,4 +248,5 @@ const Listings = () => {
     </div>
   );
 };
+
 export default Listings;

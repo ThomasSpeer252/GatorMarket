@@ -802,11 +802,11 @@
   transform: translateX(-100%);
   background: var(--color-surface);
   overflow-y: auto;
-  transition: transform 0.4s var(--animation-curve-primary),
-      opacity 0.4s var(--animation-curve-primary), visibility 0.4s;
   visibility: hidden;
-  -webkit-overflow-scrolling: touch;
+
+  pointer-events: none; /* <-- FIX */
 }
+
  
 .navigation__logo {
   display: flex;
