@@ -50,7 +50,7 @@ const Header = (props) => {
               <div className="header__link"><span>How It Works</span></div>
             </Link>
 
-            <Link to="/safety">
+            <Link to="/safety-tips">
               <div className="header__link"><span>Safety Tips</span></div>
             </Link>
 

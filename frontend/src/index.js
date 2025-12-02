@@ -15,6 +15,9 @@ import Listings from './pages/listings'
 import AdminListings from './pages/admin'
 import UpdateAccount from './pages/updateaccount'
 import AddListing from './pages/AddListing'
+import HowItWorks from './pages/how-it-works'
+import SafetyTips from './pages/safety-tips'
+import Contact from './pages/contact'
 
 const App = () => {
   return (
@@ -28,6 +31,11 @@ const App = () => {
         <Route exact path="/list" component={AddListing} />
         {/* */}
         <Route exact path="/listings" component={Listings} />
+        <Route exact path="/how-it-works" component={HowItWorks} />
+        <Route exact path="/safety-tips" component={SafetyTips} />
+        <Route exact path="/contact" component={Contact} />
+
+
 
         <Redirect to="/" />
       </Switch>
