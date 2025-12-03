@@ -50,7 +50,7 @@ const AddListing = () => {
       }
 
       if (!account.isseller) {
-        setError("Access denied. Admin privileges required.")
+        setError("Access denied. Seller account required.")
         setLoading(false)
         return
       }
