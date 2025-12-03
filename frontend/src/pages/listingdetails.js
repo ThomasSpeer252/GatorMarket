@@ -24,7 +24,6 @@ const ListingDetails = () => {
                 if (!res.ok) throw new Error("Failed to fetch listings");
 
                 const data = await res.json();
-
                 const fetchedListing = data.find(
                     (item) => String(item.listing_number) === String(id)
                 );
@@ -36,27 +35,20 @@ const ListingDetails = () => {
 
                 setListing(fetchedListing);
 
-                if (fetchedListing.original_poster) {
-                    const sellerRes = await fetch(
-                        `http://localhost:8000/users/username/${fetchedListing.original_poster}`
-                    );
+                const usersRes = await fetch("http://localhost:8000/gatormarket/accounts/");
+                const allUsers = await usersRes.json();
 
-                    if (sellerRes.ok) {
-                        const sellerData = await sellerRes.json();
-                        sellerData.preferred_meeting_location =
-                            sellerData.preferred_meeting_location || "Gainesville, FL";
-                        setSeller(sellerData);
-                    } else {
-                        setSeller({
-                            name: fetchedListing.original_poster,
-                            email: "N/A",
-                            phone_number: "N/A",
-                            preferred_meeting_location: "Gainesville, FL",
-                        });
-                    }
+                const sellerData = allUsers.find(
+                    (u) => u.username === fetchedListing.original_poster
+                );
+
+                if (sellerData) {
+                    sellerData.preferred_meeting_location =
+                        sellerData.preferred_meeting_location || "Gainesville, FL";
+                    setSeller(sellerData);
                 } else {
                     setSeller({
-                        name: "Unknown Seller",
+                        name: fetchedListing.original_poster,
                         email: "N/A",
                         phone_number: "N/A",
                         preferred_meeting_location: "Gainesville, FL",
@@ -76,8 +68,7 @@ const ListingDetails = () => {
         if (!seller) return;
 
         const confirmPurchase = window.confirm(
-            `You are about to purchase "${listing.title}" from ${seller.name}.\n\n` +
-            `Pickup spot: ${pickupLocation}\n\nProceed?`
+            `You are about to purchase "${listing.title}" from ${seller.username || seller.name}.\n\nPickup: ${pickupLocation}\n\nProceed?`
         );
 
         if (!confirmPurchase) return;
@@ -91,7 +82,7 @@ const ListingDetails = () => {
         const redirectURL = `/order-confirmed?item=${encodeURIComponent(
             listing.title
         )}&seller=${encodeURIComponent(
-            seller.name
+            seller.username || seller.name
         )}&email=${encodeURIComponent(
             seller.email || ""
         )}&phone=${encodeURIComponent(
@@ -105,15 +96,11 @@ const ListingDetails = () => {
                 body: JSON.stringify(payload),
             });
 
-            if (!res.ok) console.warn("Transaction failed (continuing redirect)");
-
             history.push(redirectURL);
-
         } catch (err) {
             history.push(redirectURL);
         }
     };
-
 
     if (loading) return <p>Loading listing...</p>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -121,7 +108,6 @@ const ListingDetails = () => {
     return (
         <div>
             <Header />
-
             <main style={{ padding: "40px", maxWidth: "900px", margin: "0 auto" }}>
                 <button
                     onClick={() => history.goBack()}
@@ -185,25 +171,21 @@ const ListingDetails = () => {
                         }}
                     >
                         <h3>Seller Info</h3>
+
                         <p>
-                            <strong>Name:</strong> {seller.name}
+                            <strong>Name:</strong> {seller.username || seller.name}
                         </p>
 
-                        {seller.email && (
-                            <p>
-                                <strong>Email:</strong>{" "}
-                                <a href={`mailto:${seller.email}`}>{seller.email}</a>
-                            </p>
-                        )}
-
-                        {seller.phone_number && (
-                            <p>
-                                <strong>Phone:</strong> {seller.phone_number}
-                            </p>
-                        )}
+                        <p>
+                            <strong>Email:</strong> {seller.email}
+                        </p>
 
                         <p>
-                            <strong>Seller’s Preferred Location:</strong>{" "}
+                            <strong>Phone:</strong> {seller.phone_number}
+                        </p>
+
+                        <p>
+                            <strong>Preferred Location:</strong>{" "}
                             {seller.preferred_meeting_location}
                         </p>
                     </div>
@@ -265,7 +247,6 @@ const ListingDetails = () => {
                     Purchase
                 </button>
             </main>
-
             <Footer />
         </div>
     );
