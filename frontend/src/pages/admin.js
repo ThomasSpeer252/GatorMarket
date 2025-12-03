@@ -4,11 +4,17 @@ import Footer from "../components/footer"
 import "./prelogin.css"
 
 const AdminListings = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  // states
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  //Listings state
   const [listings, setListings] = useState([])
   const [loading, setLoading] = useState(false)
+  
+  // API state
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
 
@@ -19,7 +25,7 @@ const AdminListings = () => {
 
     try {
       const response = await fetch(`http://localhost:8000/gatormarket/accounts/?username=${username}`, {
-        method: "GET",
+        method: "GET", // Get as a fetch account details
         headers: {
           "Content-Type": "application/json",
         },
@@ -36,23 +42,22 @@ const AdminListings = () => {
         setLoading(false)
         return
       }
-      if (account.password !== password) {
+      if (account.password !== password) { // Simple password check
         setError("Incorrect password.")
         setLoading(false)
         return
       }
 
-      if (!account.isadmin) {
+      if (!account.isadmin) { // Enforce admin 
         setError("Access denied. Admin privileges required.")
         setLoading(false)
         return
       }
 
-      setIsAuthenticated(true)
+      setIsAuthenticated(true) // set authentication state
       await fetchListings()
     } catch (err) {
-      console.error("Login error:", err)
-      setError(err.message || "Failed to authenticate")
+      setError(err.message || "Failed to authenticate") // Properly display error in popup
     } finally {
       setLoading(false)
     }
@@ -62,7 +67,7 @@ const AdminListings = () => {
     setLoading(true)
     try {
       const response = await fetch("http://localhost:8000/gatormarket/listings/")
-
+      // Implied GET method
       if (!response.ok) {
         throw new Error("Failed to fetch listings")
       }
@@ -73,9 +78,8 @@ const AdminListings = () => {
       }
 
       const data = await response.json()
-      setListings(data)
+      setListings(data) // Set fetched listings into table
     } catch (err) {
-      console.error("Fetch listings error:", err)
       setError(err.message || "Failed to load listings")
     } finally {
       setLoading(false)
@@ -93,17 +97,16 @@ const AdminListings = () => {
 
     try {
       const response = await fetch(`http://localhost:8000/gatormarket/listings/${listingId}/`, {
-        method: "DELETE",
+        method: "DELETE", // Delete method with ID linking to bad listing, headless 
       })
 
-      if (!response.ok) {
+      if (!response.ok) { // Failure checking and reporting
         throw new Error("Failed to delete listing")
       }
       setSuccess("Listing deleted successfully")
-      await fetchListings()
+      await fetchListings() // Refresh to reflect deletion
       setTimeout(() => setSuccess(""), 3000)
     } catch (err) {
-      console.error("Delete error:", err)
       setError(err.message || "Failed to delete listing")
     } finally {
       setLoading(false)
@@ -114,7 +117,7 @@ const AdminListings = () => {
     setError("")
     setSuccess("")
   }
-
+  // Dialog component for error/success messages
   const Dialog = ({ message, type = "error", onClose }) => {
     if (!message) return null
     const isError = type === "error"

@@ -5,7 +5,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import './prelogin.css'
 
-const Contact = () => {
+const Contact = () => { // Static display page for contact information
     return (
         <div className="prelogin-container1">
             <Helmet>

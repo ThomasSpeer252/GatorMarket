@@ -5,14 +5,15 @@ import Footer from "../components/footer";
 import { UF_PICKUP_LOCATIONS } from "./pickuplocations";
 
 const ListingDetails = () => {
+     // Data States
     const { id } = useParams();
     const history = useHistory();
-
     const [listing, setListing] = useState(null);
     const [seller, setSeller] = useState(null);
+    // API States
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    // Pickup location state initialised to preferred location
     const [pickupLocation, setPickupLocation] = useState(
         "UF Police Safe Exchange Zone (Newins-Ziegler Hall)"
     );
@@ -21,22 +22,23 @@ const ListingDetails = () => {
         const fetchListingDetails = async () => {
             try {
                 const res = await fetch("http://localhost:8000/gatormarket/listings/?");
+                // GET inferred
                 if (!res.ok) throw new Error("Failed to fetch listings");
 
                 const data = await res.json();
-                const fetchedListing = data.find(
+                const fetchedListing = data.find( // finding requested listing in returned data
                     (item) => String(item.listing_number) === String(id)
                 );
 
-                if (!fetchedListing) {
+                if (!fetchedListing) { // Error handling for invalid listing ID
                     setError("Listing not found.");
                     return;
                 }
 
-                setListing(fetchedListing);
+                setListing(fetchedListing); // Setting listing data on page
 
                 const usersRes = await fetch("http://localhost:8000/gatormarket/accounts/");
-                const allUsers = await usersRes.json();
+                const allUsers = await usersRes.json(); //Grabbing seller info
 
                 const sellerData = allUsers.find(
                     (u) => u.username === fetchedListing.original_poster

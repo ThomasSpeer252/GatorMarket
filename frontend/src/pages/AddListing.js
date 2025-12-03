@@ -4,17 +4,19 @@ import Footer from "../components/footer"
 import "./prelogin.css"
 
 const AddListing = () => {
-
+  // Authentication state
   const [username, setAuthUsername] = useState("")
   const [password, setAuthPassword] = useState("")
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [authenticatedUser, setAuthenticatedUser] = useState(null)
 
+  // Listing form state
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [category, setCategory] = useState("")
 
+  // API state
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const [loading, setLoading] = useState(false)
@@ -26,7 +28,7 @@ const AddListing = () => {
 
     try {
       const response = await fetch(`http://localhost:8000/gatormarket/accounts/?username=${username}`, {
-        method: "GET",
+        method: "GET", // Using GET as we are fetching account details
         headers: {
           "Content-Type": "application/json",
         },
@@ -37,13 +39,13 @@ const AddListing = () => {
         return
       }
       const accounts = await response.json()
-      const account = accounts.find((acc) => acc.username === username)
+      const account = accounts.find((acc) => acc.username === username) // Finding user by username
       if (!account) {
         setError("Account not found.")
         setLoading(false)
         return
       }
-      if (account.password !== password) {
+      if (account.password !== password) { // Simple password check
         setError("Incorrect password.")
         setLoading(false)
         return
@@ -54,11 +56,10 @@ const AddListing = () => {
         setLoading(false)
         return
       }
-      setAuthenticatedUser(account)
-      setIsAuthenticated(true)
+      setAuthenticatedUser(account) // Retaining the logged in user
+      setIsAuthenticated(true) // Set authentication state
     } catch (err) {
-      console.error("Login error:", err)
-      setError(err.message || "Failed to authenticate")
+      setError(err.message || "Failed to authenticate") // Properly display error in popup
     } finally {
       setLoading(false)
     }
@@ -74,14 +75,14 @@ const AddListing = () => {
       const listingData = {
         title: title,
         description: description,
-        price: Number.parseInt(price),
+        price: Number.parseInt(price), // Ensure price is an integer
         image_location: "",
         category: category,
         original_poster: authenticatedUser.username,
       }
 
       const response = await fetch(`http://localhost:8000/gatormarket/listings/`, {
-        method: "POST",
+        method: "POST", // POST as adding to database
         headers: {
           "Content-Type": "application/json",
         },
@@ -104,10 +105,10 @@ const AddListing = () => {
         setPrice("")
         setCategory("")
       } else {
-        setError(result.error || "Failed to add listing.")
+        setError(result.error || "Failed to add listing.") // Dispay error message from backend if necessary
       }
     } catch (err) {
-      setError("Backend server is not available. Please ensure the API server is running on localhost:8000")
+      setError("Backend server is not available. Please ensure the API server is running on localhost:8000") // Non connect error
     } finally {
       setLoading(false)
     }
@@ -118,7 +119,7 @@ const AddListing = () => {
     setSuccess("")
   }
 
-  const Dialog = ({ message, onClose, type = "error" }) => {
+  const Dialog = ({ message, onClose, type = "error" }) => { // Error & Success Popup
     if (!message) return null
     return (
       <div
