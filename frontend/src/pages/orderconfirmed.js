@@ -7,7 +7,7 @@ const OrderConfirmed = () => {
     const history = useHistory();
     const params = new URLSearchParams(window.location.search);
 
-    const item = params.get("item");
+    const item = params.get("item"); // gather persistent data
     const seller = params.get("seller");
     const email = params.get("email");
     const phone = params.get("phone");

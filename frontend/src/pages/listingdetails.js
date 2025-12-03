@@ -40,14 +40,14 @@ const ListingDetails = () => {
                 const usersRes = await fetch("http://localhost:8000/gatormarket/accounts/");
                 const allUsers = await usersRes.json(); //Grabbing seller info
 
-                const sellerData = allUsers.find(
+                const sellerData = allUsers.find( // Find seller's user data
                     (u) => u.username === fetchedListing.original_poster
                 );
 
                 if (sellerData) {
                     sellerData.preferred_meeting_location =
                         sellerData.preferred_meeting_location || "Gainesville, FL";
-                    setSeller(sellerData);
+                    setSeller(sellerData); // Seller data
                 } else {
                     setSeller({
                         name: fetchedListing.original_poster,
@@ -57,16 +57,16 @@ const ListingDetails = () => {
                     });
                 }
             } catch (err) {
-                setError(err.message);
+                setError(err.message); // error popup
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchListingDetails();
+        fetchListingDetails(); // get listing
     }, [id]);
 
-    const handlePurchase = async () => {
+    const handlePurchase = async () => { //purchse handler
         if (!seller) return;
 
         const confirmPurchase = window.confirm(
@@ -83,7 +83,7 @@ const ListingDetails = () => {
 
         const redirectURL = `/order-confirmed?item=${encodeURIComponent(
             listing.title
-        )}&seller=${encodeURIComponent(
+        )}&seller=${encodeURIComponent( // saving persistant data
             seller.username || seller.name
         )}&email=${encodeURIComponent(
             seller.email || ""
@@ -93,7 +93,7 @@ const ListingDetails = () => {
 
         try {
             const res = await fetch("http://localhost:8000/gatormarket/transactions/", {
-                method: "POST",
+                method: "POST", // post as adding to TX db
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
